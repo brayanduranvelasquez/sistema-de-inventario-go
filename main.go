@@ -19,6 +19,7 @@ func main() {
 	routes.SetDetalleSalidaRoutes(router)
 	routes.SetEntradaProductoRoutes(router)
 	routes.SetSalidaProductoRoutes(router)
+	commons.EnableCORS(router)
 
 	server := http.Server{
 		Addr:    ":9000",
