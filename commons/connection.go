@@ -25,5 +25,5 @@ func Migrate() {
 
 	log.Println("Haciendo migracion....")
 
-	db.AutoMigrate(&models.Categoria{}, &models.Producto{})
+	db.AutoMigrate(&models.Categoria{}, &models.Producto{}, &models.Entrada_Producto{}, &models.Salida_Producto{})
 }
