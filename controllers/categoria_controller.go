@@ -10,28 +10,28 @@ import (
 	"github.com/gorilla/mux"
 )
 
-func GetTodosProductos(writer http.ResponseWriter, request *http.Request) {
-	producto := []models.Producto{}
+func GetTodasCategorias(writer http.ResponseWriter, request *http.Request) {
+	categoria := []models.Categoria{}
 	db := commons.GetConnection()
 	defer db.Close()
 
-	db.Find(&producto)
-	json, _ := json.Marshal(producto)
+	db.Find(&categoria)
+	json, _ := json.Marshal(categoria)
 	commons.SendReponse(writer, http.StatusOK, json)
 }
 
-func GetProducto(writer http.ResponseWriter, request *http.Request) {
-	producto := models.Producto{}
+func GetCategoria(writer http.ResponseWriter, request *http.Request) {
+	categoria := models.Categoria{}
 
 	id := mux.Vars(request)["id"]
 
 	db := commons.GetConnection()
 	defer db.Close()
 
-	db.Find(&producto, id)
+	db.Find(&categoria, id)
 
-	if producto.ID > 0 {
-		json, _ := json.Marshal(producto)
+	if categoria.ID > 0 {
+		json, _ := json.Marshal(categoria)
 		commons.SendReponse(writer, http.StatusOK, json)
 	} else {
 		commons.SendError(writer, http.StatusNotFound)
@@ -39,13 +39,13 @@ func GetProducto(writer http.ResponseWriter, request *http.Request) {
 
 }
 
-func SaveProducto(writer http.ResponseWriter, request *http.Request) {
-	producto := models.Producto{}
+func SaveCategoria(writer http.ResponseWriter, request *http.Request) {
+	categoria := models.Categoria{}
 
 	db := commons.GetConnection()
 	defer db.Close()
 
-	error := json.NewDecoder(request.Body).Decode(&producto)
+	error := json.NewDecoder(request.Body).Decode(&categoria)
 
 	if error != nil {
 		log.Fatal(error)
@@ -53,7 +53,7 @@ func SaveProducto(writer http.ResponseWriter, request *http.Request) {
 		return
 	}
 
-	error = db.Save(&producto).Error
+	error = db.Save(&categoria).Error
 
 	if error != nil {
 		log.Fatal(error)
@@ -61,23 +61,23 @@ func SaveProducto(writer http.ResponseWriter, request *http.Request) {
 		return
 	}
 
-	json, _ := json.Marshal(producto)
+	json, _ := json.Marshal(categoria)
 
 	commons.SendReponse(writer, http.StatusCreated, json)
 }
 
-func DeleteProducto(writer http.ResponseWriter, request *http.Request) {
-	producto := models.Producto{}
+func DeleteCategoria(writer http.ResponseWriter, request *http.Request) {
+	categoria := models.Categoria{}
 
 	db := commons.GetConnection()
 	defer db.Close()
 
 	id := mux.Vars(request)["id"]
 
-	db.Find(&producto, id)
+	db.Find(&categoria, id)
 
-	if producto.ID > 0 {
-		db.Delete(producto)
+	if categoria.ID > 0 {
+		db.Delete(categoria)
 		commons.SendReponse(writer, http.StatusOK, []byte(`{}`))
 	} else {
 		commons.SendError(writer, http.StatusNotFound)
