@@ -14,6 +14,11 @@ func main() {
 
 	router := mux.NewRouter()
 	routes.SetProductoRoutes(router)
+	routes.SetCategoriaRoutes(router)
+	routes.SetDetalleEntradaRoutes(router)
+	routes.SetDetalleSalidaRoutes(router)
+	routes.SetEntradaProductoRoutes(router)
+	routes.SetSalidaProductoRoutes(router)
 
 	server := http.Server{
 		Addr:    ":9000",
