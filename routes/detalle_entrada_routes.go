@@ -6,7 +6,7 @@ import (
 )
 
 func SetDetalleEntradaRoutes(router *mux.Router) {
-	subRoute := router.PathPrefix("/detalle-salida/api").Subrouter()
+	subRoute := router.PathPrefix("/detalle-entrada/api").Subrouter()
 	subRoute.HandleFunc("/all", controllers.GetTodasDetalleEntrada).Methods("GET")
 	subRoute.HandleFunc("/save", controllers.SaveDetalleEntrada).Methods("POST")
 	subRoute.HandleFunc("/delete/{id}", controllers.DeleteDetalleEntrada).Methods("POST")

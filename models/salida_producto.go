@@ -1,9 +1,13 @@
 package models
 
+import (
+	"github.com/jinzhu/gorm"
+)
+
 type Salida_Producto struct {
-	ID            int64  `json:"id" gorm:"primary_key;auto_increment"`
-	Numero_Salida string `json:"numero_salida"`
-	Fecha         string `json:"fecha"`
+	gorm.Model
+
+	Numero_Salida int16  `json:"numero_salida"`
 	Descripcion   string `json:"descripcion"`
-	Status        string `json:"status"`
+	Status        int    `json:"status"`
 }

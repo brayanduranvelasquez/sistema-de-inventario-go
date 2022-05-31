@@ -1,8 +1,8 @@
 package models
 
 type Detalle_Entrada struct {
-	ID          int64  `json:"id" gorm:"primary_key;auto_increment"`
-	Id_producto string `json:"Id_producto"`
-	Cantidad    string `json:"cantidad"`
-	Precio      string `json:"Precio"`
+	ID          int16 `json:"id" gorm:"primary_key;auto_increment"`
+	Id_producto int16 `json:"id_producto"`
+	Cantidad    int16 `json:"cantidad"`
+	Precio      int16 `json:"Precio"`
 }
